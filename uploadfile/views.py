@@ -38,13 +38,30 @@ def uploadcsv(request):
 
 def home(request):
     users = Buyerdata.objects.all()
+    date = Buyerdata.objects.all()
+    name = Buyerdata.objects.all()
 
     # Search functionality
     search_query = request.GET.get('search')
+    uname = request.GET.get('name')
+    addrss = request.GET.get('address')
+    total = request.GET.get('Total')
     if search_query:
-        users = users.filter(buyer__icontains=search_query)
-
+        users = users.filter(address__icontains=addrss)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    if total:
+        users = users.filter(total_amount__icontains=total)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    if uname:
+        users = users.filter(buyer__icontains=uname)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    
     context = {'users': users}
     return render(request, 'home.html', context)
+    
+        
 
 
