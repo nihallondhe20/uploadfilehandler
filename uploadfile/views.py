@@ -46,12 +46,22 @@ def home(request):
     uname = request.GET.get('name')
     addrss = request.GET.get('address')
     total = request.GET.get('Total')
+    ID = request.GET.get('ID')
+    datee = request.GET.get('date')
     if search_query:
         users = users.filter(address__icontains=addrss)
         context = {'users': users}
         return render(request, 'home.html', context)
     if total:
         users = users.filter(total_amount__icontains=total)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    if ID:
+        users = users.filter(id__icontains=ID)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    if datee:
+        users = users.filter(date__icontains=datee)
         context = {'users': users}
         return render(request, 'home.html', context)
     if uname:
