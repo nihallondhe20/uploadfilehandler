@@ -3,23 +3,23 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<ul class="navbar" style="background-color: #aca91f;">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/">Upload</a>
+<ul class="navbar" style="background-color: #3538ee; box-shadow: 15px 20px 20px #01224d3b;">
+    <li class="nav-item" style="color:white">
+      <a class="nav-link active  " aria-current="page" href="/">Upload</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" style="color:white">
       <a class="nav-link disabled" aria-disabled="true">Disabled</a>
     </li>
   </ul>
 </head>
-<body >
-    <form method="get" action=""  style="scroll-margin-inline-start: 2px;box-shadow: 5px 5px 5px #f50707; background-color: rgb(238, 241, 241);box-shadow: 5px 5px 5px #f50707;">
+<body style="padding: 10px">
+    <form method="get" action=""  style="padding-left: 10px;padding-right: 10px; box-shadow: 15px 20px 20px #0f50dd3b;">
         <button style="visibility: hidden;" type="submit">Search</button>
     
     
-    <ul>
+    
         <table class="table table-success table-striped" >
-            <thead class="table-dark">
+            <thead class="table-light">
               <tr>
                 <th scope="col" ><input type="text" name="ID" style="background-color: transparent; border: transparent;"      placeholder="Search by ID"  value="{{ request.GET.search }}">
                 </th>
@@ -27,7 +27,7 @@
                 </th>
                 <th scope="col"><input type="text" name="name" style="background-color: transparent; border: transparent;"    placeholder="Search by name" value="{{ request.GET.search }}">
                 </th>
-                <th scope="col"><input type="text" name="address"  style="background-color: transparent; border: transparent;"   placeholder="Search by Address" value="{{ request.GET.address }}">
+                <th scope="col"><input type="text" name="address"  style="background-color: transparent; border: transparent;"   placeholder=" Address" value="{{ request.GET.address }}">
                 </th>
                 <th scope="col"><input type="text" name="Total"  style="background-color: transparent; border: transparent;"     placeholder="Search by Total Amount" value="{{ request.GET.search }}">
                 </th>
@@ -50,7 +50,7 @@
         
           
        
-    </ul>
+    
 </body>
 </html>
 
