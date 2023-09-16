@@ -12,22 +12,22 @@
     </li>
   </ul>
 </head>
-<body>
-    <form method="get" action="" style="margin-left: 32px ; background-color: rgb(49, 63, 63);">
-        <button type="submit">Search</button>
+<body >
+    <form method="get" action=""  style="scroll-margin-inline-start: 2px;box-shadow: 5px 5px 5px #f50707; background-color: rgb(238, 241, 241);box-shadow: 5px 5px 5px #f50707;">
+        <button style="visibility: hidden;" type="submit">Search</button>
     
     
     <ul>
-        <table class="table table-success table-striped">
+        <table class="table table-success table-striped" >
             <thead class="table-dark">
               <tr>
-                <th scope="col" ><input type="text" name="ID" style="background-color: transparent; border: transparent;"      placeholder="Search by ID" value="{{ request.GET.search }}">
+                <th scope="col" ><input type="text" name="ID" style="background-color: transparent; border: transparent;"      placeholder="Search by ID"  value="{{ request.GET.search }}">
                 </th>
                 <th scope="col"><input type="text" name="date"  style="background-color: transparent; border: transparent;"   placeholder="Search by Date" value="{{ request.GET.search }}">
                 </th>
                 <th scope="col"><input type="text" name="name" style="background-color: transparent; border: transparent;"    placeholder="Search by name" value="{{ request.GET.search }}">
                 </th>
-                <th scope="col"><input type="text" name="address"  style="background-color: transparent; border: transparent;"   placeholder="Search by Address" value="{{ request.GET.search }}">
+                <th scope="col"><input type="text" name="address"  style="background-color: transparent; border: transparent;"   placeholder="Search by Address" value="{{ request.GET.address }}">
                 </th>
                 <th scope="col"><input type="text" name="Total"  style="background-color: transparent; border: transparent;"     placeholder="Search by Total Amount" value="{{ request.GET.search }}">
                 </th>

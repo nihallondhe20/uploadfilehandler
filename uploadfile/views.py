@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import Buyerdataform,storeform
 import pandas as pd
 from django.contrib import messages
-
+from django.core.paginator import Paginator
 
 def uploadcsv(request):
     if request.method == 'POST':
@@ -38,33 +38,36 @@ def uploadcsv(request):
 
 def home(request):
     users = Buyerdata.objects.all()
-    date = Buyerdata.objects.all()
-    name = Buyerdata.objects.all()
-
+    
+   
     # Search functionality
     search_query = request.GET.get('search')
     uname = request.GET.get('name')
-    addrss = request.GET.get('address')
+    address = request.GET.get('address')
     total = request.GET.get('Total')
     ID = request.GET.get('ID')
     datee = request.GET.get('date')
     if search_query:
-        users = users.filter(address__icontains=addrss)
+        users = users.filter(address__icontains=address)
         context = {'users': users}
         return render(request, 'home.html', context)
-    if total:
+    elif search_query:
+        users = users.filter(address__icontains=address)
+        context = {'users': users}
+        return render(request, 'home.html', context)
+    elif total:
         users = users.filter(total_amount__icontains=total)
         context = {'users': users}
         return render(request, 'home.html', context)
-    if ID:
+    elif ID:
         users = users.filter(id__icontains=ID)
         context = {'users': users}
         return render(request, 'home.html', context)
-    if datee:
+    elif datee:
         users = users.filter(date__icontains=datee)
         context = {'users': users}
         return render(request, 'home.html', context)
-    if uname:
+    elif uname:
         users = users.filter(buyer__icontains=uname)
         context = {'users': users}
         return render(request, 'home.html', context)
