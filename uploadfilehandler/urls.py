@@ -21,4 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.uploadcsv),
     path('home/',views.home),
+    path('login/',views.user_login),
+    path('logout/',views.logout_view),
+    path('delete/',views.delete_all_users),
 ]

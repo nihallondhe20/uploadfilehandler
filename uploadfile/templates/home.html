@@ -3,12 +3,12 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<ul class="navbar" style="background-color: #3538ee; box-shadow: 15px 20px 20px #01224d3b;">
+<ul class="navbar" style="background-color: #3538ee; box-shadow: 15px 25px 8px #0008133b;">
     <li class="nav-item" style="color:white">
       <a class="nav-link active  " aria-current="page" href="/">Upload</a>
     </li>
     <li class="nav-item" style="color:white">
-      <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+      <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
     </li>
   </ul>
 </head>
@@ -18,7 +18,7 @@
     
     
     
-        <table class="table table-success table-striped" >
+        <table class="table table-success table-striped" style="padding-left: 10px;padding-right: 10px; box-shadow: 15px 20px 20px #0f50dd3b;" >
             <thead class="table-light">
               <tr>
                 <th scope="col" ><input type="text" name="ID" style="background-color: transparent; border: transparent;"      placeholder="Search by ID"  value="{{ request.GET.search }}">
@@ -45,8 +45,36 @@
                 </tr>
                 {% empty %}
                 {% endfor %}
+                
+                        
         </table>
+       
 
+  </body>
+  
+  </html>
+  <div class="pagination">
+    <span class="step-links">
+        {% if users.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ users.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current-page">
+            Page {{ users.number }} of {{ users.paginator.num_pages }}.
+        </span>
+
+        {% if users.has_next %}
+            <a href="?page={{ users.next_page_number }}">next</a>
+            <a href="?page={{ users.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+  
+  
+  
+  
+  
         
           
        
