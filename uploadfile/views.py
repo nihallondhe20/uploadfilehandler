@@ -100,7 +100,7 @@ def home(request):
         users = paginator.get_page(page)
         
         context = {'users': users}
-        return render(request, 'index.html', context)
+        return render(request, 'home.html', context)
     
     
 
