@@ -19,12 +19,26 @@ def uploadcsv(request):
             excel_file = request.FILES['file']
             data = pd.read_excel(excel_file)
             
-            print(data)
+            print('working')
             for index, row in data.iterrows():
+                # date = str(row['Date']).strip()
+                # total_amount =str(row['Particulars'])
+                # datas = {}
+                # if date :
+                #     datass = {date:[]}
+                #     if date == 'NaT':
+                #         datass =  date[total_amount]
+                #     print(datass)
+                   
+                # datas = datass
+                
+                    
                 date = str(row['Date']).strip()
                 buyer = str(row['Consignee/Buyer']).strip()
                 address = str(row['Address'])
                 total_amount =str(row['Gross Total'])
+                
+                
                 if (date != "NaT"):
                     user = Buyerdata(date=date, buyer=buyer, address=address,total_amount=total_amount)
                     user.full_clean() # Validate fields
@@ -86,7 +100,7 @@ def home(request):
         users = paginator.get_page(page)
         
         context = {'users': users}
-        return render(request, 'home.html', context)
+        return render(request, 'index.html', context)
     
     
 
@@ -118,9 +132,9 @@ def user_login(request):
             return redirect('/')  # Redirect to a success page (change 'home' to your desired URL name)
         else:
             error_message = "Invalid username or password."
-            return render(request, 'login.html', {'error_message': error_message})
+            return render(request, 'index.html', {'error_message': error_message})
     
-    return render(request, 'login.html')
+    return render(request, 'index.html')
 
 def logout_view(request):
     logout(request)
