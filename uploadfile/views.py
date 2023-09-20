@@ -51,7 +51,7 @@ def uploadcsv(request):
             messages.error(request, 'Unable to upload file. ' + repr(e))
     else:
         form = storeform()
-    return render(request, 'upload.html', {'form': form})
+    return render(request, 'fileupload.html', {'form': form})
 
 
 @login_required(login_url='/login/')
@@ -79,7 +79,7 @@ def home(request):
         elif total:
             users = users.filter(total_amount__icontains=total)
             context = {'users': users}
-            return render(request, 'home.html', context)
+            return render(request, 'list.html', context)
         elif ID:
             users = users.filter(id__icontains=ID)
             context = {'users': users}
@@ -91,7 +91,7 @@ def home(request):
         elif uname:
             users = users.filter(buyer__icontains=uname)
             context = {'users': users}
-            return render(request, 'home.html', context)
+            return render(request, 'list.html', context)
         
         user_list = Buyerdata.objects.all()
         paginator = Paginator(user_list, 10)  # Show 10 users per page
@@ -100,7 +100,7 @@ def home(request):
         users = paginator.get_page(page)
         
         context = {'users': users}
-        return render(request, 'home.html', context)
+        return render(request, 'list.html', context)
     
     
 
@@ -129,7 +129,7 @@ def user_login(request):
         
         if user is not None:
             login(request, user)
-            return redirect('/')  # Redirect to a success page (change 'home' to your desired URL name)
+            return redirect('/home')  # Redirect to a success page (change 'home' to your desired URL name)
         else:
             error_message = "Invalid username or password."
             return render(request, 'index.html', {'error_message': error_message})
