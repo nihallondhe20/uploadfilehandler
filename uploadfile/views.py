@@ -55,7 +55,7 @@ def uploadcsv(request):
     return render(request, 'fileupload.html', {'form': form})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/loginn')
 def home(request):
    
         
