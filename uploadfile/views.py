@@ -33,32 +33,48 @@ def uploadcsv(request):
 
         current_date = None
         current_particulars = []
-        print(df,'this is data')
+        
         for index, row in df.iterrows():
+            print(row)
+            # date = row['Date']
+            # buyer = (row['Consignee/Buyer'])
+            # address = (row['Address'])
+            # particulars =(row['Particulars'])
             date = row[0]
             buyer = row[2]
             particulars = row[1]    
             address = row[3]
 
+         
             if pd.notna(date):
                 # If date changes, save the previous data and start a new group
                 if current_date is not None:
-                    transaction = Buyerdata(
-                        date=current_date,
-                        buyer=buyer,
-                        total_amount=" ".join(current_particulars),
-                        address=address
-                    )
-                    transactions.append(transaction)
-                    current_particulars = []
+                    # Skip the first row of "Particulars" and remove table name
+                    if len(current_particulars) > 1:
+                        current_particulars.pop(0)
+                        current_particulars = [p for p in current_particulars if not p.startswith('Table Name')]
+
+                        transaction = Buyerdata(
+                            date=current_date,
+                            buyer=buyer,
+                            total_amount=" ".join(current_particulars),
+                            address=address
+                        )
+                        transactions.append(transaction)
+                        current_particulars = []
 
                 current_date = date
 
             if pd.notna(particulars):
                 current_particulars.append(particulars)
-                
-        Buyerdata.objects.bulk_create(transactions)
-        print(current_particulars)
+
+    # Skip the first row of "Particulars" and remove table name for the last group if it exists
+        if len(current_particulars) > 1:
+            current_particulars.pop(0)
+            current_particulars = [p for p in current_particulars if not p.startswith('Table Name')]
+
+        # Save the transactions to the database
+            Buyerdata.objects.bulk_create(transactions)
 
         
                 # excel_data.save()
